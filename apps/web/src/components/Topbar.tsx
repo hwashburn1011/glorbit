@@ -60,16 +60,20 @@ function SearchStub() {
 }
 
 function Clock() {
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
+    setNow(new Date());
     const id = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(id);
   }, []);
+  if (!now) {
+    return <div className="text-[11px] text-text-dim tracking-[0.08em] tabular-nums">--:--:--</div>;
+  }
   const hh = String(now.getHours()).padStart(2, "0");
   const mm = String(now.getMinutes()).padStart(2, "0");
   const ss = String(now.getSeconds()).padStart(2, "0");
   return (
-    <div className="text-[11px] text-text-dim tracking-[0.08em] font-variant-tabular tabular-nums">
+    <div className="text-[11px] text-text-dim tracking-[0.08em] tabular-nums">
       {hh}:{mm}:{ss}
     </div>
   );

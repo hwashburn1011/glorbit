@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import type { SessionStreamEvent } from "@/lib/shared";
 import { sessionWsUrl } from "@/lib/ws";
+import "@xterm/xterm/css/xterm.css";
 
 export function TerminalView({ agentId }: { agentId: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -20,7 +21,6 @@ export function TerminalView({ agentId }: { agentId: string }) {
         import("@xterm/xterm"),
         import("@xterm/addon-fit"),
       ]);
-      await import("@xterm/xterm/css/xterm.css");
       if (disposed) return;
 
       const term = new Terminal({

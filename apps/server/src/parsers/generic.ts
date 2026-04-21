@@ -1,13 +1,9 @@
+import type { OpType } from "@glorbit/shared";
 import type { ProviderParser, ParsedLine } from "./types.js";
 
 const SHELL_PROMPT_RE = /^(?:[\w./-]*[$#>]\s|\$\s|#\s|>\s)(.+)$/;
 
-function classify(cmd: string): { opType: ParsedLine extends infer _ ? never : never } | null {
-  return null;
-  void cmd;
-}
-
-const VERB_MAP: Array<{ re: RegExp; opType: "read" | "write" | "exec" | "edit" | "search" | "other" }> = [
+const VERB_MAP: Array<{ re: RegExp; opType: OpType }> = [
   { re: /^(?:cat|less|head|tail|bat|more|view)\b/, opType: "read" },
   { re: /^(?:ls|find|ripgrep|rg|grep|ag|fzf)\b/, opType: "search" },
   { re: /^(?:vim|nvim|nano|code|emacs|sed\s+-i|awk)\b/, opType: "edit" },
@@ -29,31 +25,25 @@ function condense(s: string, max = 120): string {
   return trimmed.slice(0, max - 1) + "…";
 }
 
+function classifyCommand(cmd: string): OpType {
+  for (const entry of VERB_MAP) {
+    if (entry.re.test(cmd)) return entry.opType;
+  }
+  return "other";
+}
+
 export const genericParser: ProviderParser = {
   name: "generic",
   parseLine(line): ParsedLine {
-    void classify;
     const prompt = line.match(SHELL_PROMPT_RE);
-    if (prompt) {
-      const cmd = prompt[1]!.trim();
-      if (!cmd) return null;
-      for (const entry of VERB_MAP) {
-        if (entry.re.test(cmd)) {
-          return {
-            kind: "op",
-            opType: entry.opType,
-            summary: condense(`ran ${cmd}`),
-            rawExcerpt: line,
-          };
-        }
-      }
-      return {
-        kind: "op",
-        opType: "other",
-        summary: condense(`ran ${cmd}`),
-        rawExcerpt: line,
-      };
-    }
-    return null;
+    if (!prompt) return null;
+    const cmd = prompt[1]!.trim();
+    if (!cmd) return null;
+    return {
+      kind: "op",
+      opType: classifyCommand(cmd),
+      summary: condense(`ran ${cmd}`),
+      rawExcerpt: line,
+    };
   },
 };

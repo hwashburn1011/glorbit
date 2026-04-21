@@ -6,7 +6,6 @@ import {
   useEffect,
   useMemo,
   useRef,
-  useState,
   type ReactNode,
 } from "react";
 import { api } from "./api.js";
@@ -25,8 +24,6 @@ export function GlorbitProvider({ children }: { children: ReactNode }) {
   if (!storeRef.current) storeRef.current = new GlorbitStore();
   const store = storeRef.current;
 
-  const [, force] = useState(0);
-
   const refreshMessages = useMemo(() => {
     return async (selection: Selection) => {
       const params =
@@ -38,7 +35,6 @@ export function GlorbitProvider({ children }: { children: ReactNode }) {
         api.listMessages(params),
       ]);
       store.hydrate(agentsRes.agents, msgRes.messages, msgRes.counts);
-      force((n) => n + 1);
     };
   }, [store]);
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Agent, AgentStatus, ColorKey, View } from "@/lib/shared";
 import { api } from "@/lib/api";
 import { useStore, type Selection } from "@/lib/store";
@@ -103,8 +103,20 @@ function AgentRow({ agent, active, unread, onClick }: {
   onClick: () => void;
 }) {
   const [showMenu, setShowMenu] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!showMenu) return;
+    const onDocClick = (e: MouseEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+        setShowMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, [showMenu]);
   return (
     <div
+      ref={rootRef}
       role="button"
       tabIndex={0}
       onClick={onClick}

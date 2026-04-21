@@ -236,8 +236,8 @@ Branch: `epic/21-enhancements`
 
 Branch: `epic/22-refine-1`
 
-- [ ] 22.1 walk every epic, list refinement items in REFINEMENT_LOG.md
-- [ ] 22.2 apply refinements (split into tasks inline as discovered)
+- [x] 22.1 walk every epic → REFINEMENT_LOG.md pass 1 (24 items triaged)
+- [x] 22.2 apply R3-R7, R11-R16, R18, R22 (rest deferred with documented reason)
 
 ## Epic 23 — refinement pass 2
 

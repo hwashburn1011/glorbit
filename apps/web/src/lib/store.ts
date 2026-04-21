@@ -70,18 +70,6 @@ export class GlorbitStore {
     this.set({ ...this.state, selection });
   }
 
-  replaceMessages(messages: Message[], counts: UnreadCounts): void {
-    this.set({ ...this.state, messages, counts });
-  }
-
-  setAgents(agents: Agent[]): void {
-    this.set({ ...this.state, agents });
-  }
-
-  updateCounts(counts: UnreadCounts): void {
-    this.set({ ...this.state, counts });
-  }
-
   apply(event: RoomEvent): void {
     switch (event.type) {
       case "agent.added": {
