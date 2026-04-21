@@ -202,9 +202,9 @@ Branch: `epic/17-modals`
 
 Branch: `epic/18-xterm`
 
-- [ ] 18.1 xterm.js + fit addon dep
-- [ ] 18.2 terminal pane connected to `/ws/session/:agentId`
-- [ ] 18.3 tool-button switch chat ↔ terminal
+- [x] 18.1 xterm.js + fit-addon (deps already declared in epic 10 package.json; imported lazily)
+- [x] 18.2 TerminalView connected to /ws/session/:agentId (read-only, spec-compliant)
+- [x] 18.3 ChatPane ties ChatHeader tab state to Timeline ↔ TerminalView swap
 
 ## Epic 19 — integration polish
 
