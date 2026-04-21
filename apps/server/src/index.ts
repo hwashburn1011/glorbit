@@ -1,4 +1,5 @@
 import Fastify from "fastify";
+import websocket from "@fastify/websocket";
 import { loadConfig } from "./config.js";
 import { createLogger } from "./logger.js";
 import { createDb } from "./db/index.js";
@@ -12,6 +13,8 @@ import { opsRoutes } from "./routes/ops.js";
 import { sendRoutes } from "./routes/send.js";
 import { controlRoutes } from "./routes/control.js";
 import { pinsAndReadRoutes } from "./routes/pins.js";
+import { roomWsPlugin } from "./ws/room.js";
+import { sessionWsPlugin } from "./ws/session.js";
 import type { AppDeps } from "./deps.js";
 
 async function main() {
@@ -52,6 +55,8 @@ async function main() {
     trustProxy: false,
   });
 
+  await app.register(websocket);
+
   await app.register(healthRoutes);
   await app.register(agentsRoutes(deps));
   await app.register(messagesRoutes(deps));
@@ -59,6 +64,8 @@ async function main() {
   await app.register(sendRoutes(deps));
   await app.register(controlRoutes(deps));
   await app.register(pinsAndReadRoutes(deps));
+  await app.register(roomWsPlugin(deps));
+  await app.register(sessionWsPlugin(deps));
 
   const shutdown = async (signal: string) => {
     logger.info({ signal }, "shutdown requested");
