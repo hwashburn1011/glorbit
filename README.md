@@ -61,7 +61,9 @@ When the human `@mentions` an agent, the message arrives at that pty's stdin pre
 - `Esc` — clear composer / close modal
 - `@` in composer — opens fuzzy mention popover (`↑` / `↓` / `Tab` / `⏎` to pick)
 - `★` on a message — pin/unpin (right-rail star icon)
-- right-click an agent row — `interrupt` / `kill` menu
+- `j` / `k` — move between agents (anywhere outside an input)
+- `g a` — jump to `#all agents`; `g n` → `#needs you`; `g d` → `#done`; `g p` → `#pinned`
+- right-click an agent row — `interrupt` / `kill` / `restart` menu
 - `#needs you` sidebar view — auto-marks entries as read when you open it
 
 Filter strip chips narrow the timeline to a kind. The `raw terminal noise` toggle hides the ops-collapse rows entirely (raw bytes always live in the dedicated terminal tab, never in the chat).

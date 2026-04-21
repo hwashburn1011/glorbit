@@ -84,6 +84,9 @@ export const api = {
   async kill(id: string): Promise<{ ok: true }> {
     return jsonFetch(`/api/agents/${id}/kill`, { method: "POST" });
   },
+  async restart(id: string): Promise<{ ok: true }> {
+    return jsonFetch(`/api/agents/${id}/restart`, { method: "POST" });
+  },
   async killAll(): Promise<{ ok: true }> {
     return jsonFetch(`/api/kill-all`, { method: "POST" });
   },

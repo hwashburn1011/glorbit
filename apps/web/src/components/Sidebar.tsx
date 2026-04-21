@@ -172,6 +172,16 @@ function AgentRow({ agent, active, unread, onClick }: {
           </button>
           <button
             type="button"
+            className="w-full text-left px-3 py-1.5 hover:bg-bg-hover text-accent"
+            onClick={() => {
+              void api.restart(agent.id);
+              setShowMenu(false);
+            }}
+          >
+            restart
+          </button>
+          <button
+            type="button"
             className="w-full text-left px-3 py-1.5 hover:bg-bg-hover text-text-dim"
             onClick={() => setShowMenu(false)}
           >
