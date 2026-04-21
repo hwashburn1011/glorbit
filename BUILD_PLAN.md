@@ -60,6 +60,7 @@ Branch: `epic/03-db`
 - [x] 3.5 sessions repo (startForAgent, end, updateStats)
 - [x] 3.6 messages repo (insert, list w/ filters + pagination, markRead, pin/unpin, pinned list)
 - [x] 3.7 ops repo (insert, listByWindow)
+- [x] 3.8 db barrel (`createDb(config)` returning repos + close)
 
 ## Epic 4 — pty manager
 
