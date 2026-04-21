@@ -45,7 +45,7 @@ Branch: `epic/02-backend-scaffold`
 
 - [x] 2.1 `apps/server` package.json + tsconfig + tsx dev script
 - [ ] 2.2 Fastify bootstrap `src/index.ts` with graceful shutdown
-- [ ] 2.3 config loader (env parsing, loopback guard — refuse non-127.0.0.1 unless --i-know-what-im-doing)
+- [x] 2.3 config loader (env parsing, loopback guard — refuse non-127.0.0.1 unless --i-know-what-im-doing)
 - [ ] 2.4 logger util (pino)
 - [ ] 2.5 health route `/api/health`
 
