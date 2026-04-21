@@ -92,7 +92,7 @@ Branch: `epic/06-http-api`
 - [x] 6.2 messages routes (GET with view/agent/kind/before/limit + unread counts)
 - [x] 6.3 ops routes (GET by session window)
 - [x] 6.4 `/api/send` composer endpoint (single, broadcast, note-to-self)
-- [ ] 6.5 interrupt + kill endpoints
+- [x] 6.5 interrupt + kill + kill-all endpoints
 - [ ] 6.6 pin + mark-read endpoints
 
 ## Epic 7 — WebSocket transport
