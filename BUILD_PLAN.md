@@ -126,7 +126,7 @@ Branch: `epic/10-web-scaffold`
 
 - [x] 10.1 `apps/web` Next.js 14 App Router + TS (package.json, tsconfig, next.config, api+ws rewrites)
 - [x] 10.2 Tailwind + postcss; token theme (bg, accent, kinds, mono/serif fonts, pulse/slide-in animations)
-- [ ] 10.3 globals.css: fonts (JetBrains Mono, Fraunces), CRT scanlines, radial ambient glow
+- [x] 10.3 globals.css: fonts, CRT scanlines (::after), radial ambient glow (::before), dim scrollbars
 - [ ] 10.4 root layout (grid: topbar + sidebar + chat)
 - [ ] 10.5 import shared types
 
