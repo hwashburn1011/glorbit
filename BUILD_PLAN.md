@@ -94,6 +94,7 @@ Branch: `epic/06-http-api`
 - [x] 6.4 `/api/send` composer endpoint (single, broadcast, note-to-self)
 - [x] 6.5 interrupt + kill + kill-all endpoints
 - [x] 6.6 pin + unpin + mark-read (ids or view=needs) endpoints
+- [x] 6.7 compose app: db + pty + bus + pipeline + all routes registered in index.ts
 
 ## Epic 7 — WebSocket transport
 
