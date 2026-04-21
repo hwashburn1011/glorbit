@@ -137,6 +137,7 @@ Branch: `epic/11-web-data`
 - [x] 11.1 RoomSocket (reconnecting WS client w/ exponential backoff + 25s ping keepalive)
 - [x] 11.2 fetch client (typed API surface for every /api endpoint)
 - [x] 11.3-11.6 GlorbitStore: agents + messages + counts + selection, applies RoomEvents, useSyncExternalStore hook
+- [x] 11.7 GlorbitProvider — hydrates on mount, connects RoomSocket, exposes refreshMessages
 
 ## Epic 12 — topbar
 
