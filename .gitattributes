@@ -1,0 +1,27 @@
+# Treat everything as text with LF line endings unless noted.
+* text=auto eol=lf
+
+# Shell scripts must stay LF.
+*.sh          text eol=lf
+
+# Known text formats — explicit for safety.
+*.ts          text eol=lf
+*.tsx         text eol=lf
+*.js          text eol=lf
+*.mjs         text eol=lf
+*.cjs         text eol=lf
+*.json        text eol=lf
+*.md          text eol=lf
+*.yml         text eol=lf
+*.yaml        text eol=lf
+*.css         text eol=lf
+*.html        text eol=lf
+
+# Binary.
+*.png         binary
+*.jpg         binary
+*.jpeg        binary
+*.gif         binary
+*.ico         binary
+*.woff        binary
+*.woff2       binary
