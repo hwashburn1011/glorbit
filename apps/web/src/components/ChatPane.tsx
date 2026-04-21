@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { api } from "@/lib/api";
 import { useStore } from "@/lib/store";
 import { useGlorbit } from "@/lib/provider";
 import { ChatHeader } from "./ChatHeader";
@@ -11,13 +12,23 @@ import { TerminalView } from "./TerminalView";
 import { KillAllModal } from "./KillAllModal";
 
 export function ChatPane() {
-  const { store } = useGlorbit();
+  const { store, refreshMessages } = useGlorbit();
   const selection = useStore(store, (s) => s.selection);
   const agents = useStore(store, (s) => s.agents);
   const [tab, setTab] = useState<"chat" | "terminal" | "files">("chat");
   const [kindFilter, setKindFilter] = useState<ChipKind>("everything");
   const [rawNoise, setRawNoise] = useState(false);
   const [killOpen, setKillOpen] = useState(false);
+
+  useEffect(() => {
+    void refreshMessages(selection);
+    setTab("chat");
+    if (selection.kind === "view" && selection.view === "needs") {
+      void api
+        .markRead({ view: "needs", upTo: Date.now() })
+        .catch((err) => console.warn("mark-read failed", err));
+    }
+  }, [selection, refreshMessages]);
 
   const selectedAgent =
     selection.kind === "agent" ? agents.find((a) => a.handle === selection.handle) ?? null : null;

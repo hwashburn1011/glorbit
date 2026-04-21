@@ -210,10 +210,10 @@ Branch: `epic/18-xterm`
 
 Branch: `epic/19-polish`
 
-- [ ] 19.1 pin wiring end-to-end
-- [ ] 19.2 mark-read on view/agent switch
-- [ ] 19.3 stat pill live updates via `agent.status`
-- [ ] 19.4 interrupt + kill wired to UI
+- [x] 19.1 pin/unpin star button on every MessageRow (calls api.pin/unpin)
+- [x] 19.2 selection change refetches messages; entering needs view calls mark-read
+- [x] 19.3 stat pills already live-update via store.apply(agent.status) — verified
+- [x] 19.4 right-click an agent row opens a menu with interrupt/kill
 
 ## Epic 20 — README + seed e2e
 

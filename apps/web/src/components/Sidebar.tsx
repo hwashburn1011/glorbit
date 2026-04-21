@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import type { Agent, AgentStatus, ColorKey, View } from "@/lib/shared";
+import { api } from "@/lib/api";
 import { useStore, type Selection } from "@/lib/store";
 import { useGlorbit } from "@/lib/provider";
 
@@ -101,6 +102,7 @@ function AgentRow({ agent, active, unread, onClick }: {
   unread: number;
   onClick: () => void;
 }) {
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <div
       role="button"
@@ -109,7 +111,11 @@ function AgentRow({ agent, active, unread, onClick }: {
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") onClick();
       }}
-      className={`py-2 px-[18px] cursor-pointer grid grid-cols-[28px_1fr_auto] gap-2.5 items-center border-l-2 transition-colors ${
+      onContextMenu={(e) => {
+        e.preventDefault();
+        setShowMenu((v) => !v);
+      }}
+      className={`py-2 px-[18px] cursor-pointer grid grid-cols-[28px_1fr_auto] gap-2.5 items-center border-l-2 transition-colors relative ${
         active ? "bg-bg-hover border-accent" : "border-transparent hover:bg-bg-hover"
       }`}
     >
@@ -139,6 +145,40 @@ function AgentRow({ agent, active, unread, onClick }: {
           </span>
         )}
       </div>
+      {showMenu && (
+        <div
+          className="absolute left-4 top-full z-40 bg-bg-elev border border-border-hot rounded-xs text-[11px] min-w-[160px]"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            type="button"
+            className="w-full text-left px-3 py-1.5 hover:bg-bg-hover text-text"
+            onClick={() => {
+              void api.interrupt(agent.id);
+              setShowMenu(false);
+            }}
+          >
+            interrupt
+          </button>
+          <button
+            type="button"
+            className="w-full text-left px-3 py-1.5 hover:bg-bg-hover text-kind-red"
+            onClick={() => {
+              void api.kill(agent.id);
+              setShowMenu(false);
+            }}
+          >
+            kill
+          </button>
+          <button
+            type="button"
+            className="w-full text-left px-3 py-1.5 hover:bg-bg-hover text-text-dim"
+            onClick={() => setShowMenu(false)}
+          >
+            cancel
+          </button>
+        </div>
+      )}
     </div>
   );
 }
