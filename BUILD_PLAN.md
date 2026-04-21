@@ -135,7 +135,7 @@ Branch: `epic/10-web-scaffold`
 Branch: `epic/11-web-data`
 
 - [ ] 11.1 WS client hook (/ws/room reconnection)
-- [ ] 11.2 fetch client + zod parse
+- [x] 11.2 fetch client (typed API surface for every /api endpoint)
 - [ ] 11.3 agents store (list + status updates from WS)
 - [ ] 11.4 messages store (view filters + live append)
 - [ ] 11.5 selection state (current view or agent)
