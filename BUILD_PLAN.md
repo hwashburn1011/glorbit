@@ -170,14 +170,14 @@ Branch: `epic/14-chat-header`
 
 Branch: `epic/15-timeline`
 
-- [ ] 15.1 message row (avatar, name, repo tag, provider tag, kind tag, time)
-- [ ] 15.2 kind-tag color palette
-- [ ] 15.3 ops collapse row (↑ N ops summary)
-- [ ] 15.4 expand/collapse ops
-- [ ] 15.5 artifact card
-- [ ] 15.6 2-minute grouping stack
-- [ ] 15.7 day separator
-- [ ] 15.8 fade-slide animation on new messages
+- [x] 15.1 MessageRow with avatar, name, repo, kind tag, time
+- [x] 15.2 KIND_STYLE palette (each MessageKind → border + text tone)
+- [x] 15.3 OpsCollapse row (↑ N ops · agent · click to expand)
+- [x] 15.4 Ops expand fetches /api/ops for the window
+- [x] 15.5 ArtifactCard with diff/test summary
+- [x] 15.6 2-minute grouping stack (hide avatar/header when grouped)
+- [x] 15.7 day separator
+- [x] 15.8 animate-slide-in on message rows
 
 ## Epic 16 — composer
 
