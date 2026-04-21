@@ -193,9 +193,10 @@ Branch: `epic/16-composer`
 
 Branch: `epic/17-modals`
 
-- [ ] 17.1 attach terminal modal (fields per spec §6.8)
-- [ ] 17.2 client-side validation + server path existence check
-- [ ] 17.3 kill-all confirmation modal
+- [x] 17.0 reusable Modal shell with Escape-to-close
+- [x] 17.1 AttachTerminalModal (all spec §6.8 fields incl. color swatches + avatar preview)
+- [x] 17.2 client-side validation (handle pattern, absolute path, launch cmd required); server also validates path existence
+- [x] 17.3 KillAllModal confirmation with session count
 
 ## Epic 18 — xterm drilldown
 
