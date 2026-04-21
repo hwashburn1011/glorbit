@@ -6,6 +6,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { ChatPane } from "@/components/ChatPane";
 import { AttachTerminalModal } from "@/components/AttachTerminalModal";
 import { TabTitleBinder } from "@/components/TabTitleBinder";
+import { KeyboardNav } from "@/components/KeyboardNav";
 import { useGlorbit } from "@/lib/provider";
 
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
   return (
     <>
       <TabTitleBinder />
+      <KeyboardNav />
       <Topbar />
       <Sidebar onAttach={() => setAttachOpen(true)} />
       <ChatPane />
