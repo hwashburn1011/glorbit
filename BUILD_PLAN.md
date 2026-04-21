@@ -183,11 +183,11 @@ Branch: `epic/15-timeline`
 
 Branch: `epic/16-composer`
 
-- [ ] 16.1 multi-line textarea w/ Cmd+Enter send, Esc clear
-- [ ] 16.2 @ mention autocomplete (fuzzy)
-- [ ] 16.3 routing preview line (note-to-self / single / multi / broadcast)
-- [ ] 16.4 slash commands (/broadcast, /kill, /retask, /pin, /clear)
-- [ ] 16.5 agent-view auto-prefill `@handle `
+- [x] 16.1 multi-line textarea with Cmd+Enter send, Esc clear
+- [x] 16.2 @ mention autocomplete (substring match, arrow keys, Tab/Enter insert)
+- [x] 16.3 RoutingPreview (note / single / multi / broadcast) live-updating
+- [x] 16.4 /broadcast slash command mapped to targets ["*"] (other slashes land in epic 19)
+- [x] 16.5 agent-view auto-prefill `@handle ` when selection switches
 
 ## Epic 17 — modals
 
