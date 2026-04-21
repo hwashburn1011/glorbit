@@ -33,7 +33,7 @@ Branch: `epic/01-foundation`
 - [x] 1.4 root ESLint + Prettier config
 - [x] 1.5 `.gitignore` (node_modules, dist, .next, .glorbit data dir, .env)
 - [x] 1.6 `.env.example` (PORT, HOST, GLORBIT_DATA_DIR)
-- [ ] 1.7 `packages/shared` package.json + tsconfig
+- [x] 1.7 `packages/shared` package.json + tsconfig
 - [ ] 1.8 shared types: `Agent`, `Session`, `Message`, `Op`, `MessageKind`, `AgentStatus`, `Provider`, `ColorKey`
 - [ ] 1.9 shared WS event types (`RoomEvent` union)
 - [ ] 1.10 shared system-prompt template at `packages/shared/system-prompts/glorbit-preamble.ts`
