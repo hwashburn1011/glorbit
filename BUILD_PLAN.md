@@ -100,10 +100,10 @@ Branch: `epic/06-http-api`
 
 Branch: `epic/07-ws`
 
-- [ ] 7.1 `@fastify/websocket` plugin
-- [ ] 7.2 `/ws/room` subscribe; emit `message.new`, `op.new`, `agent.status`, `agent.stats`, `agent.added`, `agent.removed`
-- [ ] 7.3 `/ws/session/:agentId` raw pty stream
-- [ ] 7.4 event bus module (server-internal pub/sub wiring)
+- [x] 7.1 `@fastify/websocket` plugin registered
+- [x] 7.2 `/ws/room` subscribe; forwards RoomEventBus events; ping/pong keepalive
+- [x] 7.3 `/ws/session/:agentId` raw pty stream (pty.raw → JSON frame; closes on pty.exit)
+- [x] 7.4 RoomEventBus module (server-internal pub/sub — shipped with epic 6.0)
 
 ## Epic 8 — periodic summary job
 
