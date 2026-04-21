@@ -15,6 +15,7 @@ import { controlRoutes } from "./routes/control.js";
 import { pinsAndReadRoutes } from "./routes/pins.js";
 import { roomWsPlugin } from "./ws/room.js";
 import { sessionWsPlugin } from "./ws/session.js";
+import { SummaryScheduler } from "./summary/scheduler.js";
 import type { AppDeps } from "./deps.js";
 
 async function main() {
@@ -67,9 +68,18 @@ async function main() {
   await app.register(roomWsPlugin(deps));
   await app.register(sessionWsPlugin(deps));
 
+  const summary = new SummaryScheduler({
+    db,
+    pty,
+    logger,
+    intervalMinutes: config.summaryMinutes,
+  });
+  summary.start();
+
   const shutdown = async (signal: string) => {
     logger.info({ signal }, "shutdown requested");
     try {
+      summary.stop();
       await pty.killAll();
       await app.close();
       db.close();

@@ -111,7 +111,7 @@ Branch: `epic/08-summary-job`
 
 - [x] 8.1 SummaryScheduler with configurable cadence
 - [x] 8.2 skip-if-recent-tagged-message (2 min window)
-- [ ] 8.3 wire SummaryScheduler into server bootstrap
+- [x] 8.3 wire SummaryScheduler into server bootstrap (start on listen, stop on shutdown)
 
 ## Epic 9 — seed mode
 
