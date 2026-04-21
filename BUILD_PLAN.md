@@ -88,12 +88,13 @@ Branch: `epic/05-parsers`
 
 Branch: `epic/06-http-api`
 
-- [ ] 6.1 agents routes (GET list, POST create+spawn, PATCH, DELETE kill+remove)
-- [ ] 6.2 messages routes (GET with view/agent/kind/before/limit)
-- [ ] 6.3 ops routes (GET by session window)
-- [ ] 6.4 `/api/send` composer endpoint (routing per targets)
-- [ ] 6.5 interrupt + kill endpoints
-- [ ] 6.6 pin + mark-read endpoints
+- [x] 6.1 agents routes (GET list, POST create+spawn, PATCH, DELETE kill+remove)
+- [x] 6.2 messages routes (GET with view/agent/kind/before/limit + unread counts)
+- [x] 6.3 ops routes (GET by session window)
+- [x] 6.4 `/api/send` composer endpoint (single, broadcast, note-to-self)
+- [x] 6.5 interrupt + kill + kill-all endpoints
+- [x] 6.6 pin + unpin + mark-read (ids or view=needs) endpoints
+- [x] 6.7 compose app: db + pty + bus + pipeline + all routes registered in index.ts
 
 ## Epic 7 — WebSocket transport
 
