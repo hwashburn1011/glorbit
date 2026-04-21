@@ -35,7 +35,7 @@ Branch: `epic/01-foundation`
 - [x] 1.6 `.env.example` (PORT, HOST, GLORBIT_DATA_DIR)
 - [x] 1.7 `packages/shared` package.json + tsconfig
 - [x] 1.8 shared types: `Agent`, `Session`, `Message`, `Op`, `MessageKind`, `AgentStatus`, `Provider`, `ColorKey`
-- [ ] 1.9 shared WS event types (`RoomEvent` union)
+- [x] 1.9 shared WS event types (`RoomEvent` union)
 - [ ] 1.10 shared system-prompt template at `packages/shared/system-prompts/glorbit-preamble.ts`
 - [ ] 1.11 README skeleton (title, status, quickstart, link to spec)
 
