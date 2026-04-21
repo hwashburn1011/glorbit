@@ -226,8 +226,11 @@ Branch: `epic/20-readme-e2e`
 
 Branch: `epic/21-enhancements`
 
-- [ ] 21.1 write ENHANCEMENTS.md: candidates aligned with "calm signal viewer"; reject bloat candidates
-- [ ] 21.2 implement approved enhancements (scope decided at 21.1)
+- [x] 21.1 ENHANCEMENTS.md documents approvals + rejections against the calm-viewer thesis
+- [x] 21.2 TabTitleBinder (unread count in document.title)
+- [x] 21.3 agent restart endpoint + sidebar menu entry
+- [x] 21.4 exact-timestamp tooltip on every message time
+- [x] 21.5 keyboard navigation (j/k cycles agents, g+[a|n|d|p] jumps to views)
 
 ## Epic 22 — refinement pass 1
 
