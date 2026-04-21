@@ -53,13 +53,14 @@ Branch: `epic/02-backend-scaffold`
 
 Branch: `epic/03-db`
 
-- [ ] 3.1 better-sqlite3 wiring + data dir creation (`~/.glorbit/`)
-- [ ] 3.2 schema init (agents, sessions, messages, ops, pinned_messages) idempotent
-- [ ] 3.3 uuidv7 util
-- [ ] 3.4 agents repo (list, getById, getByHandle, insert, patch, delete)
-- [ ] 3.5 sessions repo (startForAgent, end, updateStats)
-- [ ] 3.6 messages repo (insert, list w/ filters + pagination, markRead, pin/unpin, pinned list)
-- [ ] 3.7 ops repo (insert, listByWindow, groupedForTimeline)
+- [x] 3.1 better-sqlite3 wiring + data dir creation (`~/.glorbit/`)
+- [x] 3.2 schema init (agents, sessions, messages, ops, pinned_messages) idempotent
+- [x] 3.3 uuidv7 util
+- [x] 3.4 agents repo (list, getById, getByHandle, insert, patch, delete)
+- [x] 3.5 sessions repo (startForAgent, end, updateStats)
+- [x] 3.6 messages repo (insert, list w/ filters + pagination, markRead, pin/unpin, pinned list)
+- [x] 3.7 ops repo (insert, listByWindow)
+- [x] 3.8 db barrel (`createDb(config)` returning repos + close)
 
 ## Epic 4 — pty manager
 
