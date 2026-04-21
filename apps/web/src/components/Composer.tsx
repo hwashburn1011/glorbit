@@ -182,7 +182,11 @@ export function Composer() {
       targets = routing.handles;
     } else {
       targets = ["*"];
-      text = text.replace(/^\/broadcast\s*/i, "").replace(/(^|\s)@all\b/gi, "$1").trim();
+      text = text
+        .replace(/^\/broadcast\s*/i, "")
+        .replace(/(^|\s)@all\b\s*/gi, "$1")
+        .replace(/\s+/g, " ")
+        .trim();
     }
     try {
       await api.send({ text, targets });

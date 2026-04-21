@@ -3,16 +3,19 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Agent, ColorKey, Message, MessageKind, Op } from "@/lib/shared";
 import { api } from "@/lib/api";
-import { useStore } from "@/lib/store";
+import { useStore, type GlorbitStore } from "@/lib/store";
 import { useGlorbit } from "@/lib/provider";
 import type { ChipKind } from "./FilterStrip";
 
-async function togglePin(message: Message): Promise<void> {
+async function togglePin(message: Message, store: GlorbitStore): Promise<void> {
+  const wasPinned = !!message.pinned;
+  store.optimisticTogglePin(message.id);
   try {
-    if (message.pinned) await api.unpin(message.id);
+    if (wasPinned) await api.unpin(message.id);
     else await api.pin(message.id);
   } catch (err) {
-    console.warn("pin toggle failed", err);
+    console.warn("pin toggle failed; reverting", err);
+    store.optimisticTogglePin(message.id);
   }
 }
 
@@ -94,6 +97,7 @@ function buildRows(messages: Message[], agentsById: Map<string, Agent>): Process
   let lastDayKey = "";
   let lastAuthorId: string | null = null;
   let lastTs = 0;
+  let opsRowCounter = 0;
   let lastAgentMessage: { agent: Agent | null; ts: number; sessionId: string | null } | null = null;
 
   for (const m of messages) {
@@ -118,7 +122,7 @@ function buildRows(messages: Message[], agentsById: Map<string, Agent>): Process
     ) {
       rows.push({
         type: "ops-collapse",
-        id: `ops-${m.authorId}-${lastAgentMessage.ts}-${m.createdAt}`,
+        id: `ops-${opsRowCounter++}-${lastAgentMessage.ts}-${m.createdAt}`,
         agent: lastAgentMessage.agent,
         sessionId: lastAgentMessage.sessionId ?? "",
         fromTs: lastAgentMessage.ts,
@@ -146,10 +150,11 @@ function buildRows(messages: Message[], agentsById: Map<string, Agent>): Process
   return rows;
 }
 
-function MessageRow({ message, agent, grouped }: {
+function MessageRow({ message, agent, grouped, store }: {
   message: Message;
   agent: Agent | null;
   grouped: boolean;
+  store: GlorbitStore;
 }) {
   const style = KIND_STYLE[message.kind];
   const isUser = message.authorType === "user";
@@ -196,7 +201,7 @@ function MessageRow({ message, agent, grouped }: {
             </span>
             <button
               type="button"
-              onClick={() => void togglePin(message)}
+              onClick={() => void togglePin(message, store)}
               className={`text-[10px] leading-none px-1 ${message.pinned ? "text-accent" : "text-text-fade hover:text-text-dim"}`}
               aria-label={message.pinned ? "unpin" : "pin"}
               title={message.pinned ? "unpin" : "pin"}
@@ -324,8 +329,31 @@ export function Timeline({ kindFilter, rawNoise }: { kindFilter: ChipKind; rawNo
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
-    el.scrollTop = el.scrollHeight;
+    const distanceFromBottom = el.scrollHeight - (el.scrollTop + el.clientHeight);
+    if (distanceFromBottom < 120) {
+      el.scrollTop = el.scrollHeight;
+    }
   }, [rows.length]);
+
+  if (rows.length === 0) {
+    let hint: string;
+    if (selection.kind === "agent") {
+      hint = `no messages for @${selection.handle} yet. give them a task from the composer below.`;
+    } else if (selection.view === "needs") {
+      hint = "nothing needs you right now.";
+    } else if (selection.view === "done") {
+      hint = "no sessions have finished today.";
+    } else if (selection.view === "pinned") {
+      hint = "nothing pinned yet. hit the ★ on any message to pin it.";
+    } else {
+      hint = "attach a terminal to start hearing from agents.";
+    }
+    return (
+      <div className="flex items-center justify-center min-h-0 text-[12px] italic text-text-fade px-6 text-center">
+        {hint}
+      </div>
+    );
+  }
 
   return (
     <div ref={scrollerRef} className="overflow-y-auto min-h-0">
@@ -360,6 +388,7 @@ export function Timeline({ kindFilter, rawNoise }: { kindFilter: ChipKind; rawNo
             message={row.message}
             agent={row.agent}
             grouped={row.grouped}
+            store={store}
           />
         );
       })}

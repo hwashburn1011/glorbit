@@ -128,7 +128,8 @@ export function createMessagesRepo(db: Db) {
         params.before = filters.before;
       }
 
-      const limit = Math.min(Math.max(filters.limit ?? 50, 1), 500);
+      const rawLimit = Number.isFinite(filters.limit) ? (filters.limit as number) : 50;
+      const limit = Math.min(Math.max(rawLimit, 1), 500);
       params.limit = limit;
 
       const sql = `

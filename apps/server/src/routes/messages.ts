@@ -41,8 +41,10 @@ export function messagesRoutes(deps: AppDeps): FastifyPluginAsync {
       if (kind && !VALID_KINDS.includes(kind)) {
         return reply.code(400).send({ error: "kind invalid" });
       }
-      const before = q.before ? Number.parseInt(q.before, 10) : undefined;
-      const limit = q.limit ? Number.parseInt(q.limit, 10) : 50;
+      const beforeParsed = q.before ? Number.parseInt(q.before, 10) : NaN;
+      const before = Number.isFinite(beforeParsed) ? beforeParsed : undefined;
+      const limitParsed = q.limit ? Number.parseInt(q.limit, 10) : 50;
+      const limit = Number.isFinite(limitParsed) ? limitParsed : 50;
 
       const messages = deps.db.messages.list({
         view,
