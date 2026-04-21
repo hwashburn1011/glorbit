@@ -81,7 +81,7 @@ Branch: `epic/05-parsers`
 - [x] 5.3 generic provider parser (shell-prompt verb classifier)
 - [x] 5.4 claude-code parser (tool-use markers, thinking/diff/speaker lines + generic fallback)
 - [x] 5.5 parser registry with per-provider selection (generic fallback)
-- [ ] 5.6 status transitions on kind (blocker→blocked, done→done, question→waiting)
+- [x] 5.6 status transitions on kind (blocker→blocked, done→done, question→waiting, artifact→needs-review)
 - [ ] 5.7 wire parser → scrubber → db insert → event emit
 
 ## Epic 6 — HTTP API
