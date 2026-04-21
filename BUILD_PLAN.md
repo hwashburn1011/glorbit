@@ -47,7 +47,7 @@ Branch: `epic/02-backend-scaffold`
 - [ ] 2.2 Fastify bootstrap `src/index.ts` with graceful shutdown
 - [x] 2.3 config loader (env parsing, loopback guard — refuse non-127.0.0.1 unless --i-know-what-im-doing)
 - [x] 2.4 logger util (pino)
-- [ ] 2.5 health route `/api/health`
+- [x] 2.5 health route `/api/health`
 
 ## Epic 3 — database layer
 
