@@ -136,10 +136,7 @@ Branch: `epic/11-web-data`
 
 - [x] 11.1 RoomSocket (reconnecting WS client w/ exponential backoff + 25s ping keepalive)
 - [x] 11.2 fetch client (typed API surface for every /api endpoint)
-- [ ] 11.3 agents store (list + status updates from WS)
-- [ ] 11.4 messages store (view filters + live append)
-- [ ] 11.5 selection state (current view or agent)
-- [ ] 11.6 unread-count derivations
+- [x] 11.3-11.6 GlorbitStore: agents + messages + counts + selection, applies RoomEvents, useSyncExternalStore hook
 
 ## Epic 12 — topbar
 
