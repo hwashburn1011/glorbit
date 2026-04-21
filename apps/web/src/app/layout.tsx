@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
+import { GlorbitProvider } from "@/lib/provider";
 
 export const metadata: Metadata = {
   title: "glorbit — agent room",
@@ -11,9 +12,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <div className="app-root h-screen grid grid-rows-[auto_1fr] grid-cols-[288px_1fr] [grid-template-areas:'topbar_topbar''sidebar_chat']">
-          {children}
-        </div>
+        <GlorbitProvider>
+          <div className="app-root h-screen grid grid-rows-[auto_1fr] grid-cols-[288px_1fr] [grid-template-areas:'topbar_topbar''sidebar_chat']">
+            {children}
+          </div>
+        </GlorbitProvider>
       </body>
     </html>
   );
