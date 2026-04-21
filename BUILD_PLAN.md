@@ -134,12 +134,10 @@ Branch: `epic/10-web-scaffold`
 
 Branch: `epic/11-web-data`
 
-- [ ] 11.1 WS client hook (/ws/room reconnection)
-- [ ] 11.2 fetch client + zod parse
-- [ ] 11.3 agents store (list + status updates from WS)
-- [ ] 11.4 messages store (view filters + live append)
-- [ ] 11.5 selection state (current view or agent)
-- [ ] 11.6 unread-count derivations
+- [x] 11.1 RoomSocket (reconnecting WS client w/ exponential backoff + 25s ping keepalive)
+- [x] 11.2 fetch client (typed API surface for every /api endpoint)
+- [x] 11.3-11.6 GlorbitStore: agents + messages + counts + selection, applies RoomEvents, useSyncExternalStore hook
+- [x] 11.7 GlorbitProvider — hydrates on mount, connects RoomSocket, exposes refreshMessages
 
 ## Epic 12 — topbar
 
