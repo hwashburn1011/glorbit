@@ -152,10 +152,10 @@ Branch: `epic/12-topbar`
 
 Branch: `epic/13-sidebar`
 
-- [ ] 13.1 Views section (all/needs/done/pinned with badges)
-- [ ] 13.2 Agents section with avatars, status dots, provider tags, unread counts
-- [ ] 13.3 active row styling (border stripe, tint, accent text)
-- [ ] 13.4 Attach terminal button (opens modal)
+- [x] 13.1 Views section (all/needs/done/pinned, badges from counts)
+- [x] 13.2 Agents section with colored avatar, status dot, repo label, provider tag, unread count
+- [x] 13.3 active row styling (accent left-border, bg-hover tint, accent text)
+- [x] 13.4 Attach terminal button (calls onAttach; modal lands in epic 17)
 
 ## Epic 14 — chat header + filter strip
 
