@@ -30,5 +30,23 @@ export function controlRoutes(deps: AppDeps): FastifyPluginAsync {
       await deps.pty.killAll();
       return { ok: true };
     });
+
+    app.post<{ Params: { id: string } }>(
+      "/api/agents/:id/restart",
+      async (req, reply) => {
+        const agent = deps.db.agents.getById(req.params.id);
+        if (!agent) return reply.code(404).send({ error: "agent not found" });
+        if (deps.pty.has(agent.id)) {
+          await deps.pty.kill(agent.id);
+        }
+        try {
+          deps.pty.start(agent.id);
+        } catch (err) {
+          deps.logger.error({ err, agentId: agent.id }, "restart failed");
+          return reply.code(500).send({ error: "restart failed" });
+        }
+        return { ok: true };
+      },
+    );
   };
 }
