@@ -32,7 +32,7 @@ Branch: `epic/01-foundation`
 - [x] 1.3 `tsconfig.base.json` (strict, moduleResolution bundler)
 - [x] 1.4 root ESLint + Prettier config
 - [x] 1.5 `.gitignore` (node_modules, dist, .next, .glorbit data dir, .env)
-- [ ] 1.6 `.env.example` (PORT, HOST, GLORBIT_DATA_DIR)
+- [x] 1.6 `.env.example` (PORT, HOST, GLORBIT_DATA_DIR)
 - [ ] 1.7 `packages/shared` package.json + tsconfig
 - [ ] 1.8 shared types: `Agent`, `Session`, `Message`, `Op`, `MessageKind`, `AgentStatus`, `Provider`, `ColorKey`
 - [ ] 1.9 shared WS event types (`RoomEvent` union)
