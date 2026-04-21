@@ -16,6 +16,7 @@ import { pinsAndReadRoutes } from "./routes/pins.js";
 import { roomWsPlugin } from "./ws/room.js";
 import { sessionWsPlugin } from "./ws/session.js";
 import { SummaryScheduler } from "./summary/scheduler.js";
+import { startSeed } from "./seed/simulator.js";
 import type { AppDeps } from "./deps.js";
 
 async function main() {
@@ -101,6 +102,9 @@ async function main() {
   try {
     const address = await app.listen({ host: config.host, port: config.port });
     logger.info({ address, dataDir: config.dataDir, seed: config.seed }, "glorbit server ready");
+    if (config.seed) {
+      await startSeed({ db, bus, logger });
+    }
   } catch (err) {
     logger.error({ err }, "failed to start server");
     process.exit(1);
