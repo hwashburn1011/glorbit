@@ -143,10 +143,10 @@ Branch: `epic/11-web-data`
 
 Branch: `epic/12-topbar`
 
-- [ ] 12.1 brand block + pulsing accent dot
-- [ ] 12.2 stat pills (running/blocked/waiting/done counts)
-- [ ] 12.3 search stub (non-functional)
-- [ ] 12.4 live clock
+- [x] 12.1 brand block + pulsing accent dot
+- [x] 12.2 stat pills (running/blocked/waiting/done derived from agents list)
+- [x] 12.3 search stub (disabled input)
+- [x] 12.4 live clock (1 Hz update)
 
 ## Epic 13 — sidebar
 
