@@ -37,7 +37,7 @@ Branch: `epic/01-foundation`
 - [x] 1.8 shared types: `Agent`, `Session`, `Message`, `Op`, `MessageKind`, `AgentStatus`, `Provider`, `ColorKey`
 - [x] 1.9 shared WS event types (`RoomEvent` union)
 - [x] 1.10 shared system-prompt template at `packages/shared/system-prompts/glorbit-preamble.ts`
-- [ ] 1.11 README skeleton (title, status, quickstart, link to spec)
+- [x] 1.11 README skeleton (title, status, quickstart, link to spec)
 
 ## Epic 2 — backend scaffold
 
