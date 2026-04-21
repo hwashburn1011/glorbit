@@ -66,7 +66,7 @@ Branch: `epic/03-db`
 
 Branch: `epic/04-pty`
 
-- [ ] 4.1 pty wrapper: spawn with node-pty, write, kill, onData, onExit
+- [x] 4.1 pty wrapper: spawn with node-pty, write, kill, onData, onExit, resize, interrupt
 - [ ] 4.2 pty registry (agentId → handle) + lifecycle
 - [x] 4.3 transcript writer with debounced flush (2s / 8KB)
 - [x] 4.4 secret scrubber module + patterns
