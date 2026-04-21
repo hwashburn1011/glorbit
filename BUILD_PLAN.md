@@ -89,7 +89,7 @@ Branch: `epic/05-parsers`
 Branch: `epic/06-http-api`
 
 - [x] 6.1 agents routes (GET list, POST create+spawn, PATCH, DELETE kill+remove)
-- [ ] 6.2 messages routes (GET with view/agent/kind/before/limit)
+- [x] 6.2 messages routes (GET with view/agent/kind/before/limit + unread counts)
 - [ ] 6.3 ops routes (GET by session window)
 - [ ] 6.4 `/api/send` composer endpoint (routing per targets)
 - [ ] 6.5 interrupt + kill endpoints
