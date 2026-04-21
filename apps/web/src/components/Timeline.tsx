@@ -46,6 +46,16 @@ function formatTime(ts: number): string {
   return `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
 }
 
+function formatTimeExact(ts: number): string {
+  const d = new Date(ts);
+  const month = d.toLocaleDateString(undefined, { month: "short" });
+  const day = String(d.getDate()).padStart(2, "0");
+  const hh = String(d.getHours()).padStart(2, "0");
+  const mm = String(d.getMinutes()).padStart(2, "0");
+  const ss = String(d.getSeconds()).padStart(2, "0");
+  return `${month} ${day} · ${hh}:${mm}:${ss}`;
+}
+
 function formatDaySeparator(ts: number): string {
   const d = new Date(ts);
   const today = new Date();
@@ -176,7 +186,10 @@ function MessageRow({ message, agent, grouped }: {
             <span className={`text-[9px] uppercase tracking-wide18 px-1.5 py-px rounded-xs border ${style.tone}`}>
               {style.label}
             </span>
-            <span className="text-[10px] text-text-fade ml-auto tabular-nums">
+            <span
+              className="text-[10px] text-text-fade ml-auto tabular-nums"
+              title={formatTimeExact(message.createdAt)}
+            >
               {formatTime(message.createdAt)}
             </span>
             <button
