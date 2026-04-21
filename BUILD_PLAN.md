@@ -78,7 +78,7 @@ Branch: `epic/05-parsers`
 
 - [x] 5.1 tag parser (SUMMARY/DECISION/BLOCKER/QUESTION/ARTIFACT/DONE/STATUS) column-0 prefix + TagStreamer for indented continuations
 - [x] 5.2 mention extraction (`@handle` tokens) + broadcast detection
-- [ ] 5.3 generic provider parser (ops: read/write/exec/edit heuristics)
+- [x] 5.3 generic provider parser (shell-prompt verb classifier)
 - [ ] 5.4 claude-code provider parser (tool-use markers, thinking blocks)
 - [ ] 5.5 parser registry + per-agent selection
 - [ ] 5.6 status transitions on kind (blocker→blocked, done→done, question→waiting)
