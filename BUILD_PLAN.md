@@ -161,10 +161,10 @@ Branch: `epic/13-sidebar`
 
 Branch: `epic/14-chat-header`
 
-- [ ] 14.1 chat header (view-aware and agent-aware variants)
-- [ ] 14.2 tool buttons (chat / terminal / files stub / kill-all)
-- [ ] 14.3 filter strip kind chips with counts
-- [ ] 14.4 raw-noise toggle
+- [x] 14.1 ChatHeader with view-aware / agent-aware titles and subtitles
+- [x] 14.2 tool buttons (chat / terminal / files stub / kill-all with danger state)
+- [x] 14.3 FilterStrip kind chips with live counts
+- [x] 14.4 raw-noise toggle (controlled switch)
 
 ## Epic 15 — timeline
 
