@@ -54,7 +54,7 @@ Branch: `epic/02-backend-scaffold`
 Branch: `epic/03-db`
 
 - [x] 3.1 better-sqlite3 wiring + data dir creation (`~/.glorbit/`)
-- [ ] 3.2 schema init (agents, sessions, messages, ops, pinned_messages) idempotent
+- [x] 3.2 schema init (agents, sessions, messages, ops, pinned_messages) idempotent
 - [x] 3.3 uuidv7 util
 - [ ] 3.4 agents repo (list, getById, getByHandle, insert, patch, delete)
 - [ ] 3.5 sessions repo (startForAgent, end, updateStats)
