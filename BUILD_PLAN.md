@@ -239,6 +239,16 @@ Branch: `epic/22-refine-1`
 - [x] 22.1 walk every epic → REFINEMENT_LOG.md pass 1 (24 items triaged)
 - [x] 22.2 apply R3-R7, R11-R16, R18, R22 (rest deferred with documented reason)
 
+## Epic 24 — portability
+
+Branch: `epic/24-portability`
+
+- [x] 24.1 `.gitattributes` pinning repo to LF
+- [x] 24.2 dotenv loader walks up from cwd / module dir so `.env` works at repo root, `apps/server/`, or anywhere in between
+- [x] 24.3 `scripts/bootstrap.sh` — post-clone setup (node/pnpm check, install, env copy, next-steps)
+- [x] 24.4 `scripts/install.sh` — curl-pipeable clone + bootstrap
+- [x] 24.5 README: one-liner setup, manual path, seed mode, accurate Xcode note, .env location note
+
 ## Epic 23 — refinement pass 2
 
 Branch: `epic/23-refine-2`

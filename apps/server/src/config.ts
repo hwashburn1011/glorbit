@@ -1,7 +1,31 @@
+import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import process from "node:process";
-import "dotenv/config";
+import { fileURLToPath } from "node:url";
+import dotenv from "dotenv";
+
+function findDotenv(): string | null {
+  const here = path.dirname(fileURLToPath(import.meta.url));
+  const starts = [process.cwd(), here];
+  const seen = new Set<string>();
+  for (const start of starts) {
+    let dir = start;
+    for (let depth = 0; depth < 8; depth += 1) {
+      if (seen.has(dir)) break;
+      seen.add(dir);
+      const candidate = path.join(dir, ".env");
+      if (fs.existsSync(candidate)) return candidate;
+      const parent = path.dirname(dir);
+      if (parent === dir) break;
+      dir = parent;
+    }
+  }
+  return null;
+}
+
+const envPath = findDotenv();
+if (envPath) dotenv.config({ path: envPath });
 
 export interface AppConfig {
   host: string;
