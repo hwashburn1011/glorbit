@@ -76,3 +76,20 @@ Each pass walks every epic and lists concrete issues to fix. Items are resolved 
 ## Execution order
 
 R3, R4, R5, R6, R7, R11, R12, R13, R14, R15, R16, R18, R21, R22 get fixed in this pass. The rest (R1, R2, R8, R9, R10, R17, R19, R20, R23, R24) are either no-ops or deferred with reason.
+
+## Pass 2 — epic 23
+
+Second walk after pass 1. Looked for issues pass 1 missed, issues pass 1 may have introduced, and polish items previously deferred.
+
+- **P1** `Timeline.buildRows` constructs ops-collapse id from `authorId + fromTs + toTs`. If two consecutive pairs collide on timestamps (seed mode, same-ms inserts) the React key repeats. Add a monotonic index.
+- **P2** `messages.repo.list` clamps limit with `Math.min(Math.max(filters.limit ?? 50, 1), 500)`. If the query string is `limit=abc`, `parseInt` returns `NaN`, which propagates and produces `LIMIT NaN` in SQL (runtime error). Coerce invalid numbers to the default.
+- **P3** `Composer.handleSend` for broadcast strips `@all` with `/(^|\s)@all\b/gi, "$1"` which leaves double spaces. Collapse to single space after stripping.
+- **P4** `KillAllModal` count passes `agents.filter(status==="running").length`. `killAll` actually terminates every live pty regardless of status. Use live-pty count — but we only have agent status in the UI. Use a more honest label: "N agents will be signalled" with total agents count.
+- **P5** Mark-read: after the fetch call, the store still shows the pre-mark counts until the next page refresh. Optimistically zero `counts.needs` after a successful `markRead({view:"needs"})`.
+- **P6** Pin: after `api.pin/unpin`, the in-store message.pinned is stale until next refresh. Optimistically toggle the local copy.
+- **P7** Timeline is empty when the selected view has no messages — reads as a rendering bug. Add an empty-state hint.
+- **P8** Timeline: on new messages, scrolling jumps to bottom unconditionally. If the user scrolled up to read history, they'll lose their place. Only auto-scroll when already near bottom.
+- **P9** `globals.css` uses `@import url(...)` for Google Fonts which is render-blocking. The mockup does this too, so it's spec-consistent. Defer to a future refactor.
+- **P10** `/api/send` accepts optional `kind` field from client but ignores it. Type the field as server-controlled.
+
+Fixed in this pass: P1, P2, P3, P4, P5, P6, P7, P8. Deferred: P9, P10.

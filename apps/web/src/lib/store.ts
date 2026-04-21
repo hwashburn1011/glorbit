@@ -70,6 +70,33 @@ export class GlorbitStore {
     this.set({ ...this.state, selection });
   }
 
+  optimisticMarkNeedsRead(): void {
+    this.set({
+      ...this.state,
+      counts: { ...this.state.counts, needs: 0 },
+      messages: this.state.messages.map((m) =>
+        (m.kind === "blocker" || m.kind === "question") && m.readAt === null
+          ? { ...m, readAt: Date.now() }
+          : m,
+      ),
+    });
+  }
+
+  optimisticTogglePin(id: string): void {
+    let nextPinned = this.state.counts.pinned;
+    const messages = this.state.messages.map((m) => {
+      if (m.id !== id) return m;
+      const pinned = !m.pinned;
+      nextPinned += pinned ? 1 : -1;
+      return { ...m, pinned };
+    });
+    this.set({
+      ...this.state,
+      messages,
+      counts: { ...this.state.counts, pinned: Math.max(0, nextPinned) },
+    });
+  }
+
   apply(event: RoomEvent): void {
     switch (event.type) {
       case "agent.added": {

@@ -243,8 +243,8 @@ Branch: `epic/22-refine-1`
 
 Branch: `epic/23-refine-2`
 
-- [ ] 23.1 second-pass review → REFINEMENT_LOG.md appendix
-- [ ] 23.2 apply second-pass refinements
+- [x] 23.1 second-pass review → REFINEMENT_LOG.md appendix (10 items)
+- [x] 23.2 apply P1-P8 (P9, P10 deferred with reason in the log)
 
 ## PR workflow
 

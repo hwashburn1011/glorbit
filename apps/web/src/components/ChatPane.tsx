@@ -24,11 +24,12 @@ export function ChatPane() {
     void refreshMessages(selection);
     setTab("chat");
     if (selection.kind === "view" && selection.view === "needs") {
+      store.optimisticMarkNeedsRead();
       void api
         .markRead({ view: "needs", upTo: Date.now() })
         .catch((err) => console.warn("mark-read failed", err));
     }
-  }, [selection, refreshMessages]);
+  }, [selection, refreshMessages, store]);
 
   const selectedAgent =
     selection.kind === "agent" ? agents.find((a) => a.handle === selection.handle) ?? null : null;
@@ -64,7 +65,7 @@ export function ChatPane() {
       <KillAllModal
         open={killOpen}
         onClose={() => setKillOpen(false)}
-        count={agents.filter((a) => a.status === "running").length}
+        count={agents.filter((a) => a.status !== "idle" && a.status !== "done").length}
       />
     </main>
   );
