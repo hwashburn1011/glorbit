@@ -64,17 +64,22 @@ export function FilterStrip({ kindFilter, onKindChange, rawNoise, onRawNoiseChan
         );
       })}
       <div className="flex-1" />
-      <label className="flex items-center gap-2 text-[10px] uppercase tracking-wide18 text-text-dim cursor-pointer select-none">
+      <button
+        type="button"
+        onClick={() => onRawNoiseChange(!rawNoise)}
+        role="switch"
+        aria-checked={rawNoise}
+        className="flex items-center gap-2 text-[10px] uppercase tracking-wide18 text-text-dim select-none"
+      >
         <span>raw terminal noise</span>
         <span
           className={`w-7 h-3.5 rounded-full transition-colors relative ${rawNoise ? "bg-accent" : "bg-border-hot"}`}
-          onClick={() => onRawNoiseChange(!rawNoise)}
         >
           <span
             className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-bg transition-transform ${rawNoise ? "translate-x-[14px]" : "translate-x-0.5"}`}
           />
         </span>
-      </label>
+      </button>
     </div>
   );
 }

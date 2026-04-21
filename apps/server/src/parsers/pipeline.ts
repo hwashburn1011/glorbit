@@ -2,7 +2,7 @@ import type { Logger } from "pino";
 import type { Message, Op, Provider } from "@glorbit/shared";
 import type { GlorbitDb } from "../db/index.js";
 import type { PtyRegistry } from "../pty/registry.js";
-import { TagStreamer } from "./tags.js";
+import { TagStreamer, type TagMatch } from "./tags.js";
 import { extractMentions } from "./mentions.js";
 import { parserFor } from "./registry.js";
 import { statusFromKind } from "./statusTransitions.js";
@@ -23,12 +23,14 @@ interface PerAgentState {
   streamer: TagStreamer;
   providerCtx: ParserContext;
   provider: Provider;
+  lastSessionId: string | null;
+  lastHandle: string;
 }
 
 export function wirePipeline(deps: PipelineDeps): void {
   const states = new Map<string, PerAgentState>();
 
-  function ensureState(agentId: string, handle: string): PerAgentState {
+  function ensureState(agentId: string): PerAgentState {
     let st = states.get(agentId);
     if (!st) {
       const agent = deps.db.agents.getById(agentId);
@@ -37,9 +39,10 @@ export function wirePipeline(deps: PipelineDeps): void {
         streamer: new TagStreamer(),
         providerCtx: { handle: agent.handle },
         provider: agent.provider,
+        lastSessionId: null,
+        lastHandle: agent.handle,
       };
       states.set(agentId, st);
-      void handle;
     }
     return st;
   }
@@ -47,8 +50,8 @@ export function wirePipeline(deps: PipelineDeps): void {
   function writeTag(
     agentId: string,
     handle: string,
-    sessionId: string,
-    match: ReturnType<TagStreamer["flush"]>,
+    sessionId: string | null,
+    match: TagMatch | null,
   ): void {
     if (!match) return;
     const mentions = extractMentions(match.body);
@@ -71,9 +74,10 @@ export function wirePipeline(deps: PipelineDeps): void {
   }
 
   deps.pty.on("pty.data", (payload: { agentId: string; handle: string; sessionId: string; line: string }) => {
-    const st = ensureState(payload.agentId, payload.handle);
-    const provider = st.provider;
-    const parser = parserFor(provider);
+    const st = ensureState(payload.agentId);
+    st.lastSessionId = payload.sessionId;
+    st.lastHandle = payload.handle;
+    const parser = parserFor(st.provider);
 
     const prevFlush = st.streamer.push(payload.line);
     if (prevFlush) {
@@ -98,15 +102,7 @@ export function wirePipeline(deps: PipelineDeps): void {
     const st = states.get(agentId);
     if (!st) return;
     const flushed = st.streamer.flush();
-    if (flushed) {
-      const agent = deps.db.agents.getById(agentId);
-      if (agent) {
-        const session = deps.db.sessions.liveForAgent(agentId) ?? null;
-        if (session) {
-          writeTag(agentId, agent.handle, session.id, flushed);
-        }
-      }
-    }
+    writeTag(agentId, st.lastHandle, st.lastSessionId, flushed);
     states.delete(agentId);
   });
 

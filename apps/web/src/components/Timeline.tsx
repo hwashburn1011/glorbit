@@ -138,6 +138,8 @@ function buildRows(messages: Message[], agentsById: Map<string, Agent>): Process
     lastTs = m.createdAt;
     if (m.authorType === "agent" && agent && m.sessionId) {
       lastAgentMessage = { agent, ts: m.createdAt, sessionId: m.sessionId };
+    } else if (m.authorType !== "agent") {
+      lastAgentMessage = null;
     }
   }
 

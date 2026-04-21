@@ -165,15 +165,3 @@ export class PtyRegistry extends EventEmitter {
     );
   }
 }
-
-export interface PtyRegistryEmitter {
-  on<K extends keyof PtyRegistryEvents>(
-    event: K,
-    listener: (payload: PtyRegistryEvents[K]) => void,
-  ): PtyRegistryEmitter;
-  off<K extends keyof PtyRegistryEvents>(
-    event: K,
-    listener: (payload: PtyRegistryEvents[K]) => void,
-  ): PtyRegistryEmitter;
-  emit<K extends keyof PtyRegistryEvents>(event: K, payload: PtyRegistryEvents[K]): boolean;
-}

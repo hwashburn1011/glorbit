@@ -177,27 +177,25 @@ interface StartSeedDeps {
 }
 
 export async function startSeed(deps: StartSeedDeps): Promise<void> {
-  const agents: Agent[] = [];
+  const pairs: Array<{ agent: Agent; script: FakeAgentScript }> = [];
   for (const script of SCRIPTS) {
     const existing = deps.db.agents.getByHandle(script.input.handle);
     const agent = existing ?? deps.db.agents.insert(script.input);
-    agents.push(agent);
+    pairs.push({ agent, script });
     emitStatus(deps.bus, agent, "running", deps.db);
     deps.bus.emit({ type: "agent.added", agent });
   }
 
   void (async () => {
     const sessions = new Map<string, string>();
-    for (const a of agents) {
-      const s = deps.db.sessions.startForAgent(a.id, null);
-      sessions.set(a.id, s.id);
+    for (const { agent } of pairs) {
+      const s = deps.db.sessions.startForAgent(agent.id, null);
+      sessions.set(agent.id, s.id);
     }
 
     while (true) {
       await Promise.all(
-        SCRIPTS.map(async (script, idx) => {
-          const agent = agents[idx];
-          if (!agent) return;
+        pairs.map(async ({ agent, script }) => {
           const sessionId = sessions.get(agent.id);
           if (!sessionId) return;
           for (const beat of script.beats) {
