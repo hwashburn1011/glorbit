@@ -7,6 +7,15 @@ import { useStore } from "@/lib/store";
 import { useGlorbit } from "@/lib/provider";
 import type { ChipKind } from "./FilterStrip";
 
+async function togglePin(message: Message): Promise<void> {
+  try {
+    if (message.pinned) await api.unpin(message.id);
+    else await api.pin(message.id);
+  } catch (err) {
+    console.warn("pin toggle failed", err);
+  }
+}
+
 const COLOR_BG: Record<ColorKey, string> = {
   accent: "bg-accent",
   blue: "bg-kind-blue",
@@ -170,6 +179,15 @@ function MessageRow({ message, agent, grouped }: {
             <span className="text-[10px] text-text-fade ml-auto tabular-nums">
               {formatTime(message.createdAt)}
             </span>
+            <button
+              type="button"
+              onClick={() => void togglePin(message)}
+              className={`text-[10px] leading-none px-1 ${message.pinned ? "text-accent" : "text-text-fade hover:text-text-dim"}`}
+              aria-label={message.pinned ? "unpin" : "pin"}
+              title={message.pinned ? "unpin" : "pin"}
+            >
+              ★
+            </button>
           </div>
         )}
         <div className="text-[13px] text-text whitespace-pre-wrap break-words">
