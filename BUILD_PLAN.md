@@ -117,8 +117,8 @@ Branch: `epic/08-summary-job`
 
 Branch: `epic/09-seed`
 
-- [ ] 9.1 `--seed` flag parsing in server entry
-- [ ] 9.2 fake agent simulator (4 agents with realistic tagged output)
+- [x] 9.1 `--seed` flag parsing (already in config.loadConfig)
+- [x] 9.2 fake agent simulator — 4 scripted personas (athena/kestrel/orion/nova) emit realistic tags + ops in a loop
 
 ## Epic 10 — frontend scaffold
 
