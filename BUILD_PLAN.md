@@ -76,13 +76,13 @@ Branch: `epic/04-pty`
 
 Branch: `epic/05-parsers`
 
-- [ ] 5.1 tag parser (SUMMARY/DECISION/BLOCKER/QUESTION/ARTIFACT/DONE/STATUS) column-0 prefix
-- [ ] 5.2 mention extraction (`@handle` tokens)
-- [ ] 5.3 generic provider parser (ops: read/write/exec/edit heuristics)
-- [ ] 5.4 claude-code provider parser (tool-use markers, thinking blocks)
-- [ ] 5.5 parser registry + per-agent selection
-- [ ] 5.6 status transitions on kind (blocker→blocked, done→done, question→waiting)
-- [ ] 5.7 wire parser → scrubber → db insert → event emit
+- [x] 5.1 tag parser (SUMMARY/DECISION/BLOCKER/QUESTION/ARTIFACT/DONE/STATUS) column-0 prefix + TagStreamer for indented continuations
+- [x] 5.2 mention extraction (`@handle` tokens) + broadcast detection
+- [x] 5.3 generic provider parser (shell-prompt verb classifier)
+- [x] 5.4 claude-code parser (tool-use markers, thinking/diff/speaker lines + generic fallback)
+- [x] 5.5 parser registry with per-provider selection (generic fallback)
+- [x] 5.6 status transitions on kind (blocker→blocked, done→done, question→waiting, artifact→needs-review)
+- [x] 5.7 pipeline: pty.data → tag streamer → provider parser → db + emit.message/op + status patch
 
 ## Epic 6 — HTTP API
 
