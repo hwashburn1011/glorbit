@@ -128,7 +128,7 @@ Branch: `epic/10-web-scaffold`
 - [x] 10.2 Tailwind + postcss; token theme (bg, accent, kinds, mono/serif fonts, pulse/slide-in animations)
 - [x] 10.3 globals.css: fonts, CRT scanlines (::after), radial ambient glow (::before), dim scrollbars
 - [x] 10.4 root layout with grid areas (topbar/sidebar/chat) + placeholder page with branded topbar
-- [ ] 10.5 import shared types
+- [x] 10.5 re-export shared types through `src/lib/shared.ts` for consistent import path
 
 ## Epic 11 — frontend data layer
 
