@@ -70,7 +70,7 @@ Branch: `epic/04-pty`
 - [ ] 4.2 pty registry (agentId → handle) + lifecycle
 - [ ] 4.3 transcript writer with debounced flush (2s / 8KB)
 - [x] 4.4 secret scrubber module + patterns
-- [ ] 4.5 line buffer (handle partial lines across chunks)
+- [x] 4.5 line buffer (handle partial lines across chunks) + ANSI strip
 
 ## Epic 5 — message parsing
 
