@@ -134,7 +134,7 @@ Branch: `epic/10-web-scaffold`
 
 Branch: `epic/11-web-data`
 
-- [ ] 11.1 WS client hook (/ws/room reconnection)
+- [x] 11.1 RoomSocket (reconnecting WS client w/ exponential backoff + 25s ping keepalive)
 - [x] 11.2 fetch client (typed API surface for every /api endpoint)
 - [ ] 11.3 agents store (list + status updates from WS)
 - [ ] 11.4 messages store (view filters + live append)
