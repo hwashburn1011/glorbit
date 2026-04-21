@@ -245,7 +245,7 @@ Branch: `epic/24-portability`
 
 - [x] 24.1 `.gitattributes` pinning repo to LF
 - [x] 24.2 dotenv loader walks up from cwd / module dir so `.env` works at repo root, `apps/server/`, or anywhere in between
-- [ ] 24.3 `scripts/bootstrap.sh` — post-clone setup (node/pnpm check, install, env copy, next-steps)
+- [x] 24.3 `scripts/bootstrap.sh` — post-clone setup (node/pnpm check, install, env copy, next-steps)
 - [ ] 24.4 `scripts/install.sh` — curl-pipeable clone + bootstrap
 - [ ] 24.5 README: one-liner setup, Mac section, accurate Xcode note
 
