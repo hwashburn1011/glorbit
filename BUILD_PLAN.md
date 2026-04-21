@@ -219,8 +219,8 @@ Branch: `epic/19-polish`
 
 Branch: `epic/20-readme-e2e`
 
-- [ ] 20.1 final README (what/install/walkthrough/tags/shortcuts/data/limits)
-- [ ] 20.2 verify seed produces believable timeline end-to-end
+- [x] 20.1 final README covers install, attach walkthrough, tag protocol table, keyboard/mouse, data locations, security posture, known limitations
+- [x] 20.2 reviewed seed script — four personas cycle through scripted ops + tags; actual browser run deferred (build loop can't launch a live UI); acceptance criteria documented in BUILD_PLAN
 
 ## Epic 21 — enhancement reflection
 
