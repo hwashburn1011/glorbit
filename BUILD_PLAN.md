@@ -27,7 +27,7 @@ Commit convention: `epic NN.M: short-imperative`.
 
 Branch: `epic/01-foundation`
 
-- [ ] 1.1 root `package.json` with pnpm workspaces + meta scripts
+- [x] 1.1 root `package.json` with pnpm workspaces + meta scripts
 - [ ] 1.2 `pnpm-workspace.yaml` + `.npmrc`
 - [ ] 1.3 `tsconfig.base.json` (strict, moduleResolution bundler)
 - [ ] 1.4 root ESLint + Prettier config
