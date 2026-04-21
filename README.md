@@ -10,23 +10,39 @@ glorbit is a chat-first viewer layered on top of those already-running terminal 
 
 ## Install & run
 
-Prerequisites: Node 20+, pnpm 11+, and a platform where [`node-pty`](https://github.com/microsoft/node-pty) builds (macOS/Linux; Windows needs VS Build Tools).
+### One-liner (Mac / Linux)
 
 ```sh
-pnpm install
-cp .env.example .env           # optional; defaults are fine on localhost
-pnpm dev                       # starts Fastify backend + Next.js frontend
+bash <(curl -fsSL https://raw.githubusercontent.com/hwashburn1011/glorbit/main/scripts/install.sh)
+```
+
+That clones into `./glorbit` and runs `scripts/bootstrap.sh`, which verifies Node 20+, enables pnpm via Corepack if needed, installs every workspace, and drops a `.env` at the repo root. Override the destination with `GLORBIT_DIR=/abs/path`.
+
+### Manual
+
+```sh
+git clone https://github.com/hwashburn1011/glorbit.git
+cd glorbit
+./scripts/bootstrap.sh      # or: pnpm install && cp .env.example .env
+pnpm dev                    # starts Fastify backend + Next.js frontend
 ```
 
 Open <http://localhost:3000>.
 
-To explore the UI without attaching real terminals, run the server with fake agents:
+### Seed mode (no real agents)
 
 ```sh
-pnpm --filter @glorbit/server seed
-# in another shell
+pnpm --filter @glorbit/server seed &
 pnpm --filter @glorbit/web dev
 ```
+
+### Prerequisites
+
+- **Node 20+** and **pnpm 11+** (bootstrap will `corepack enable pnpm` for you).
+- **Git**.
+- Xcode Command Line Tools are only needed if your Node / arch combo has no prebuilt binary for `better-sqlite3` or `node-pty` — both ship prebuilds for Darwin arm64 + x64 on Node 20/22/24, so on a stock recent Mac `pnpm install` resolves without compiling.
+
+`.env` is resolved by walking up from either the current directory or the server source file, so it can live at the repo root, in `apps/server/`, or anywhere in between — whichever you prefer.
 
 ## Attach your first terminal
 
