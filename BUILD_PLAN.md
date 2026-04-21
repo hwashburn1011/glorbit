@@ -82,7 +82,7 @@ Branch: `epic/05-parsers`
 - [x] 5.4 claude-code parser (tool-use markers, thinking/diff/speaker lines + generic fallback)
 - [x] 5.5 parser registry with per-provider selection (generic fallback)
 - [x] 5.6 status transitions on kind (blocker→blocked, done→done, question→waiting, artifact→needs-review)
-- [ ] 5.7 wire parser → scrubber → db insert → event emit
+- [x] 5.7 pipeline: pty.data → tag streamer → provider parser → db + emit.message/op + status patch
 
 ## Epic 6 — HTTP API
 
